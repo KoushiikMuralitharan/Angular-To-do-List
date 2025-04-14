@@ -1,0 +1,89 @@
+main {
+  height: 100vh;
+  width: 100wh;
+  background-color: #8c4d7c;
+  position: relative;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #8a7090;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 10px; 
+  width: 400px;
+}
+
+.tab-controls {
+  display: flex;
+  justify-items: start;
+}
+
+.tab-control-button {
+  border: none;
+  outline: none;
+  background-color: #936a89;
+  padding: 5px;
+  width: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.tab-control-button.active {
+  background-color: #76556e;
+}
+
+.divider {
+  width: 2px;
+  height: 32px;
+  background-color: black;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-content-aligner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  padding: 10px;
+  justify-content:  space-between;
+}
+
+.form-input-aligner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 2px 5px ;
+}
+
+.login-button {
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: none;
+  border: none;
+  outline: none;
+  width: 100px;
+  background-color: #936a89;
+  cursor: pointer;
+}
+
+label {
+  font-size: 14px;
+}

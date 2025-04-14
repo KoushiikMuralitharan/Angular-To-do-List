@@ -1,0 +1,68 @@
+<main>
+  <div class="main-container">
+    <div class="tab-controls">
+      <button
+        class="tab-control-button"
+        [class.active]="currentTab === 'login'"
+        (click)="switchTab('login')"
+      >
+        Login
+      </button>
+      <div class="divider"></div>
+      <button
+        class="tab-control-button"
+        [class.active]="currentTab === 'sign up'"
+        (click)="switchTab('sign up')"
+      >
+        Sign up
+      </button>
+    </div>
+
+    <!-- Sign in form -->
+    <form *ngIf="currentTab === 'login'"  [formGroup]="loginForm" (ngSubmit)="OnFormSubmited()">
+      <div class="form-content-aligner">
+        <div class="form-input-aligner">
+          <label for="useremail">
+            Email
+            <input name="clientemail" id="useremail" type="email" formControlName="useremail" />
+          </label>
+          <label for="password">
+            Password
+            <input name="clientpassword" id="password" type="password" formControlName="password"/>
+          </label>
+        </div>
+        <button class="login-button" type="submit">Login</button>
+      </div>
+    </form>
+
+    <!-- Sign up Form -->
+
+    <form *ngIf="currentTab === 'sign up'" action="">
+      <div class="form-content-aligner">
+        <div class="form-input-aligner">
+          <label for="username">
+            Username
+            <input name="clientname" id="username" type="text" />
+          </label>
+          <label for="useremail">
+            Email
+            <input name="clientemail" id="useremail" type="email" />
+          </label>
+          <label for="password">
+            Password
+            <input name="clientpassword" id="password" type="password" />
+          </label>
+          <label for="confirmpassword">
+            Confirm Password
+            <input
+              name="clientconfirmpassword"
+              id="confirmpassword"
+              type="password"
+            />
+          </label>
+        </div>
+        <button class="login-button">Sign up</button>
+      </div>
+    </form>
+  </div>
+</main>
