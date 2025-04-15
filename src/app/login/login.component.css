@@ -87,3 +87,18 @@ input {
 label {
   font-size: 14px;
 }
+
+
+input.ng-invalid.ng-touched{
+  border: 2px solid red;
+}
+
+.error-msg{
+  display: block;
+  color: red;
+  font-size: small;
+}
+
+div span.error-msg{
+  height: 10px;
+}

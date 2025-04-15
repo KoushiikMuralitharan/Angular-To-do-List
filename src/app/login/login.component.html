@@ -5,6 +5,7 @@
         class="tab-control-button"
         [class.active]="currentTab === 'login'"
         (click)="switchTab('login')"
+        [appHighlight]="'#76556e'"
       >
         Login
       </button>
@@ -13,44 +14,112 @@
         class="tab-control-button"
         [class.active]="currentTab === 'sign up'"
         (click)="switchTab('sign up')"
+        [appHighlight]="'#76556e'"
       >
         Sign up
       </button>
     </div>
 
     <!-- Sign in form -->
-    <form *ngIf="currentTab === 'login'"  [formGroup]="loginForm" (ngSubmit)="OnFormSubmited()">
+    <form
+      *ngIf="currentTab === 'login'"
+      [formGroup]="loginForm"
+      (ngSubmit)="OnLoginFormSubmited()"
+    >
       <div class="form-content-aligner">
         <div class="form-input-aligner">
           <label for="useremail">
             Email
-            <input name="clientemail" id="useremail" type="email" formControlName="useremail" />
+            <input
+              name="clientemail"
+              id="useremail"
+              type="email"
+              formControlName="useremail"
+            />
+            <span class="error-msg">{{
+              getEmailErrors(loginForm.get('useremail'))
+            }}</span>
           </label>
           <label for="password">
             Password
-            <input name="clientpassword" id="password" type="password" formControlName="password"/>
+            <input
+              name="clientpassword"
+              id="password"
+              type="password"
+              formControlName="password"
+            />
+            <span
+              class="error-msg"
+              [style.visibility]="
+                !loginForm.get('password')?.valid &&
+                loginForm.get('password')?.touched
+                  ? 'visible'
+                  : 'hidden'
+              "
+              >Please enter the password.</span
+            >
           </label>
         </div>
-        <button class="login-button" type="submit">Login</button>
+        <button
+          class="login-button"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
       </div>
     </form>
 
     <!-- Sign up Form -->
-
-    <form *ngIf="currentTab === 'sign up'" action="">
+    <form
+      *ngIf="currentTab === 'sign up'"
+      [formGroup]="signUpForm"
+      (ngSubmit)="OnSignUpFormSubmitted()"
+    >
       <div class="form-content-aligner">
         <div class="form-input-aligner">
           <label for="username">
             Username
-            <input name="clientname" id="username" type="text" />
+            <input
+              name="clientname"
+              id="username"
+              type="text"
+              formControlName="username"
+            />
+            <span
+              class="error-msg"
+              [style.visibility]="
+                !signUpForm.get('username')?.valid &&
+                signUpForm.get('username')?.touched
+                  ? 'visible'
+                  : 'hidden'
+              "
+              >Username is a required field.</span
+            >
           </label>
           <label for="useremail">
             Email
-            <input name="clientemail" id="useremail" type="email" />
+            <input
+              name="clientemail"
+              id="useremail"
+              type="email"
+              formControlName="useremail"
+            />
+            <span class="error-msg">{{
+              getEmailErrors(signUpForm.get('useremail'))
+            }}</span>
           </label>
           <label for="password">
             Password
-            <input name="clientpassword" id="password" type="password" />
+            <input
+              name="clientpassword"
+              id="password"
+              type="password"
+              formControlName="password"
+            />
+            <!-- <span class="error-msg" [style.visibility]="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched ? 'visible' : 'hidden'">Please enter the password.</span>
+            <span class="error-msg" *ngIf="isPasswordMismatch && signUpForm.get('password')?.touched && signUpForm.get('confirmpassword')?.touched ">Password and Confirm password is not same.</span> -->
+            <span class="error-msg">{{ passwordErrors }}</span>
           </label>
           <label for="confirmpassword">
             Confirm Password
@@ -58,10 +127,25 @@
               name="clientconfirmpassword"
               id="confirmpassword"
               type="password"
+              formControlName="confirmpassword"
             />
+            <div>
+              <span
+                class="error-msg"
+                [style.visibility]="
+                  !signUpForm.get('confirmpassword')?.valid &&
+                  signUpForm.get('confirmpassword')?.touched
+                    ? 'visible'
+                    : 'hidden'
+                "
+                >Please enter the confirmPassword.</span
+              >
+            </div>
           </label>
         </div>
-        <button class="login-button">Sign up</button>
+        <button class="login-button" [disabled]="!signUpForm.valid">
+          Sign up
+        </button>
       </div>
     </form>
   </div>
